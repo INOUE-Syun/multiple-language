@@ -8,12 +8,12 @@ jobs:
     steps:
       - checkout
       # for front-end
+      - run:
+        command: cd ./jsmain
       - restore_cache:
         key: dependency-cache-{{ checksum "package.json" }}
       - run:
-        command: |
-          cd ./jsmain
-          yarn install
+        command: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
