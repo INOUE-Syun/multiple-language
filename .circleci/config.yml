@@ -10,11 +10,11 @@ jobs:
       # for front-end
       - run:
           command: |
-            cd ~/multiple-language
+            cd ~/multiple-language/jsmain
             yarn install
       - run:
           command: |
-            cd ~/multiple-language
+            cd ~/multiple-language/jsmain
             yarn test
       - store_artifacts:
           path: /jsmod/test-results.xml
