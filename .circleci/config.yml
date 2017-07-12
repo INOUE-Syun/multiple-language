@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/multiple-language
+    docker:
+      - image: circleci/node:6
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      # for front-end
+      - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+        command: |
+          cd ./jsmain
+          yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+        command: yarn test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results.xml
