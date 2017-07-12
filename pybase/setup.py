@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '配布用パッケージをsetupします'
 
 from setuptools import setup, find_packages
