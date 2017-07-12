@@ -3,24 +3,24 @@ jobs:
   build:
     working_directory: ~/multiple-language
     docker:
-      - image: circleci/node:6
+      # - image: circleci/node:6
       - image: circleci/python:3.6.1
     steps:
       - checkout
       # for front-end
-      - run:
-          command: |
-            cd ~/multiple-language/jsmain
-            yarn install
-      - run:
-          command: |
-            cd ~/multiple-language/jsmain
-            yarn test
-      - store_artifacts:
-          path: ~/multiple-language/jsmod/test-results.xml
-          prefix: tests
-      - store_test_results:
-          path: ~/multiple-language/jsmod/test-results.xml
+      # - run:
+      #     command: |
+      #       cd ~/multiple-language/jsmain
+      #       yarn install
+      # - run:
+      #     command: |
+      #       cd ~/multiple-language/jsmain
+      #       yarn test
+      # - store_artifacts:
+      #     path: ~/multiple-language/jsmod/test-results.xml
+      #     prefix: tests
+      # - store_test_results:
+      #     path: ~/multiple-language/jsmod/test-results.xml
       # for back-end
       # - run:
       #     command: pip install setuptools
@@ -28,6 +28,8 @@ jobs:
       #     command: pip install wheel
       - run:
           command: python --version
+      - run:
+          command: pip install setuppy
       - run:
           command: |
             cd ~/multiple-language/pybase
