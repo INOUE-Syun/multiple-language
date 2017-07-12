@@ -22,22 +22,24 @@ jobs:
       - store_test_results:
           path: ~/multiple-language/jsmod/test-results.xml
       # for back-end
+      # - run:
+      #     command: pip install setuptools
+      # - run:
+      #     command: pip install wheel
       - run:
-          command: pip install setuptools
-      - run:
-          command: pip install wheel
+          command: python --version
       - run:
           command: |
             cd ~/multiple-language/pybase
             python -m unittest discover -v -s ./test
-      - run:
-          command: |
-            cd ~/multiple-language/pybase
-            python setup.py bdist_wheel
-      - run:
-          command: |
-            cd ~/multiple-language/pybase
-            wheel install ./dist/pybase-0.0.0-py3-none-any.whl
+      # - run:
+      #     command: |
+      #       cd ~/multiple-language/pybase
+      #       python setup.py bdist_wheel
+      # - run:
+      #     command: |
+      #       cd ~/multiple-language/pybase
+      #       wheel install ./dist/pybase-0.0.0-py3-none-any.whl
       - run:
           command: |
             cd ~/multiple-language/pymain
