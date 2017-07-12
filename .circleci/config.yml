@@ -3,8 +3,8 @@ jobs:
   build:
     working_directory: ~/multiple-language
     docker:
-      - image: circleci/python:3.6.1
       - image: circleci/node:6
+      - image: circleci/python:3.6.1
     steps:
       - checkout
       # for front-end
