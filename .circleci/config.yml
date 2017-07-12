@@ -9,22 +9,15 @@ jobs:
       - checkout
       # for front-end
       - run:
-          command: cd ./jsmain
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          command: |
+            cd ~/multiple-language
+            yarn install
       - run:
-          command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          command: yarn test
+          command: |
+            cd ~/multiple-language
+            yarn test
       - store_artifacts:
-          path: test-results.xml
+          path: /jsmod/test-results.xml
           prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
       - store_test_results:
-          path: test-results.xml
+          path: /jsmod/test-results.xml
