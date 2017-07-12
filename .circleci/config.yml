@@ -17,7 +17,24 @@ jobs:
             cd ~/multiple-language/jsmain
             yarn test
       - store_artifacts:
-          path: /jsmod/test-results.xml
+          path: ~/multiple-language/jsmod/test-results.xml
           prefix: tests
       - store_test_results:
-          path: /jsmod/test-results.xml
+          path: ~/multiple-language/jsmod/test-results.xml
+      # for back-end
+      - run:
+          command: |
+            cd ~/multiple-language/pybase
+            python -m unittest discover -v -s ./test
+      - run:
+          command: |
+            cd ~/multiple-language/pybase
+            python setup.py bdist_wheel
+      - run:
+          command: |
+            cd ~/multiple-language/pybase
+            wheel install ./dist/pybase-0.0.0-py3-none-any.whl
+      - run:
+          command: |
+            cd ~/multiple-language/pymain
+            python -m unittest discover -v -s ./test
