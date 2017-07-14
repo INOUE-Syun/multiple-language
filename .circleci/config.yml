@@ -43,7 +43,7 @@ jobs:
       - run:
           command: |
             cd ~/multiple-language/pybase
-            pip install ./dist/pybase-0.0.0-py3-none-any.whl
+            sudo wheel install ./dist/pybase-0.0.0-py3-none-any.whl
       # test python-lambdas
       - run:
           command: |
