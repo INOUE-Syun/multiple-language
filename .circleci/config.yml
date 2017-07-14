@@ -62,4 +62,8 @@ workflows:
     jobs:
       - build
       - build_and_test_frontend
+          requires:
+            - build
       - build_and_test_backend
+          requires:
+            - build
