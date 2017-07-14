@@ -1,54 +1,26 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/multiple-language/front
-    # working_directory: ~/multiple-language
+    working_directory: ~/multiple-language
     docker:
       - image: circleci/node:6.10
-      # - image: circleci/python:3.6.1
     steps:
       - checkout
-      # for front-end
       - run:
           command: |
-            cd ~/multiple-language/jsmain
+            cd ~/multiple-language/front
             yarn install
       - run:
           command: |
-            cd ~/multiple-language/jsmain
+            cd ~/multiple-language/front
             yarn test
       - store_artifacts:
           path: ~/multiple-language/jsmod/test-results.xml
           prefix: tests
       - store_test_results:
           path: ~/multiple-language/jsmod/test-results.xml
-      # for back-end
-      # - run:
-      #     command: pip install setuptools
-      # - run:
-      #     command: pip install wheel
-      # - run:
-      #     command: python --version
-      # - run:
-      #     command: pip install setuptools
-      # - run:
-      #     command: |
-      #       cd ~/multiple-language/pybase
-      #       python -m unittest discover -v -s ./test
-      # - run:
-      #     command: |
-      #       cd ~/multiple-language/pybase
-      #       python setup.py bdist_wheel
-      # - run:
-      #     command: |
-      #       cd ~/multiple-language/pybase
-      #       wheel install ./dist/pybase-0.0.0-py3-none-any.whl
-      # - run:
-      #     command: |
-      #       cd ~/multiple-language/pymain
-      #       python -m unittest discover -v -s ./test
   build:
-    working_directory: ~/multiple-language/back
+    working_directory: ~/multiple-language
     docker:
       - image: circleci/python:3.6.1
     steps:
@@ -61,19 +33,19 @@ jobs:
       # test python-lambda-base
       - run:
           command: |
-            cd ~/multiple-language/pybase
+            cd ~/multiple-language/back
             python -m unittest discover -v -s ./test
       # build python-lambda-base
       - run:
           command: |
-            cd ~/multiple-language/pybase
+            cd ~/multiple-language/back
             python setup.py bdist_wheel
       - run:
           command: |
-            cd ~/multiple-language/pybase
+            cd ~/multiple-language/back
             wheel install ./dist/pybase-0.0.0-py3-none-any.whl
       # test python-lambdas
       - run:
           command: |
-            cd ~/multiple-language/pymain
+            cd ~/multiple-language/back
             python -m unittest discover -v -s ./test
