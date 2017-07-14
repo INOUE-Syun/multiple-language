@@ -6,12 +6,20 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
+      - run:
+          command: |
+            cd ~/multiple-language
+            ls
 
   build_and_test_frontend:
     working_directory: ~/multiple-language
     docker:
       - image: circleci/node:6.10
     steps:
+      - run:
+          command: |
+            cd ~/multiple-language
+            ls
       - run:
           command: |
             cd ~/multiple-language/jsmain
@@ -37,6 +45,10 @@ jobs:
       - run:
           command: pip install wheel
       # test python-lambda-base
+      - run:
+          command: |
+            cd ~/multiple-language
+            ls
       - run:
           command: |
             cd ~/multiple-language/pybase
