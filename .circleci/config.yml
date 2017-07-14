@@ -8,11 +8,11 @@ jobs:
       - checkout
       - run:
           command: |
-            cd ~/multiple-language/front
+            cd ~/multiple-language/jsmain
             yarn install
       - run:
           command: |
-            cd ~/multiple-language/front
+            cd ~/multiple-language/jsmain
             yarn test
       - store_artifacts:
           path: ~/multiple-language/jsmod/test-results.xml
@@ -33,19 +33,19 @@ jobs:
       # test python-lambda-base
       - run:
           command: |
-            cd ~/multiple-language/back
+            cd ~/multiple-language/pybase
             python -m unittest discover -v -s ./test
       # build python-lambda-base
       - run:
           command: |
-            cd ~/multiple-language/back
+            cd ~/multiple-language/pybase
             python setup.py bdist_wheel
       - run:
           command: |
-            cd ~/multiple-language/back
+            cd ~/multiple-language/pybase
             wheel install ./dist/pybase-0.0.0-py3-none-any.whl
       # test python-lambdas
       - run:
           command: |
-            cd ~/multiple-language/back
+            cd ~/multiple-language/pymain
             python -m unittest discover -v -s ./test
