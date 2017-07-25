@@ -1,21 +1,17 @@
 version: 2
 jobs:
-  build:
+  checkout:
     working_directory: ~/multiple-language
-    docker:
-      - image: circleci/node:6.10
+    machine:
+      enabled: true
     steps:
-      - checkout
       - run:
-          command: |
-            echo "start ci"
+          - checkout
 
   build_and_test_frontend:
-    working_directory: ~/multiple-language
     docker:
       - image: circleci/node:6.10
     steps:
-      - checkout
       - run:
           command: |
             cd ~/multiple-language/jsmain
@@ -31,7 +27,6 @@ jobs:
           path: ~/multiple-language/jsmod/test-results.xml
 
   build_and_test_backend:
-    working_directory: ~/multiple-language
     docker:
       - image: circleci/python:3.6.1
     steps:
@@ -65,10 +60,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - checkout
       - build_and_test_frontend:
           requires:
-            - build
+            - checkout
       - build_and_test_backend:
           requires:
-            - build
+            - checkout
